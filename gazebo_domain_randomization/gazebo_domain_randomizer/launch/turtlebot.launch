@@ -1,0 +1,6 @@
+<launch>
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+</include>
+<param name="turtlebot" command="cat $(find camera_tutorial)/urdf/turtle.sdf"/>
+<node name="spawn_sdf" pkg="gazebo_ros" type="spawn_model" args="-x 0.0 -y 0.0 -z 0.0 -sdf -param turtlebot -model turtle" respawn="false" output="screen"/>
+</launch>
