@@ -259,12 +259,7 @@ class TargetRandomizer:
                 #rospy.logerr("Service call failed: %s" %e)
                 pass
             self._pub_sign.publish(self._index)
-            """
-            try:
-                self._delete_model(DeleteModelRequest(obj_name))
-            except:
-                pass
-            """
+            
         rospy.sleep(2)
         if self._spawned:
             print('skip')
