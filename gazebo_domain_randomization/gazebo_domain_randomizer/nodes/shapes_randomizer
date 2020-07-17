@@ -169,9 +169,9 @@ if __name__ == "__main__":
     rospy.init_node("shapes_randomizer")
     position_range = {}
     orientation_range = {}
-    position_range['x'] = rospy.get_param("~position_range/x", {'min': -1.2, 'max': 1.2})
-    position_range['y'] = rospy.get_param("~position_range/y", {'min': -1.6, 'max': 1.6})
-    position_range['z'] = rospy.get_param("~position_range/z", {'min': 1.0, 'max': 1.5})
+    position_range['x'] = rospy.get_param("~position_range/x", {'min': -3, 'max': 1.2})
+    position_range['y'] = rospy.get_param("~position_range/y", {'min': -3, 'max': 1.6})
+    position_range['z'] = rospy.get_param("~position_range/z", {'min': 0.5, 'max': 1.0})
     orientation_range['r'] = rospy.get_param("~orientation_range/r", {'min': -PI, 'max': PI})
     orientation_range['p'] = rospy.get_param("~orientation_range/p", {'min': -PI, 'max': PI})
     orientation_range['y'] = rospy.get_param("~orientation_range/y", {'min': -PI, 'max': PI})
