@@ -72,9 +72,9 @@ class image_converter:
      				n = i
      			else:
      				continue
+     		print(model_poses.name[n])
 
 	    	orient_q = model_poses.pose[n].orientation
-	    	print(model_poses.name[n])
 	    	orient_list = [orient_q.x, orient_q.y, orient_q.z, orient_q.w]
 	    	(roll, pitch, yaw) = euler_from_quaternion(orient_list)
 	    	cy = np.cos(yaw)
@@ -90,7 +90,8 @@ class image_converter:
 	    	                       [sx*cx, cx , sx*sx],
 	    	                       [-sx, 0, cx]])
 	    	z = np.array([0,0,1])
-	    	perpend_z = trans_array.transpose()*inv_array.transpose()*z
+	    	print(inv_array, trans_array, z)
+	    	perpend_z = trans_array*inv_array*z
 	    	print(perpend_z)
 	    	cv2.imwrite('/home/parallels/data/'+'camera_rgb_'+str(i/5).zfill(5)+'.jpg', color_array)
  			#cv2.imwrite('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/img/depth/'+str(i/5)+'camera_depth.pgm', depth_array*255)
