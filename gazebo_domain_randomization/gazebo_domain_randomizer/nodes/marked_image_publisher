@@ -145,7 +145,7 @@ class MarkedImage:
             r = r2 * r1
             obj_saver['quaternion_xyzw'] = list(r.as_quat())
             obj_list.append(obj_saver)
-        save_path = './result/dope/single/'
+        save_path = '/home/joonkyu/catkin_ws/src/gazebo_turtlebot_randomizer/data/dope/single/'
         json_filename='single_turtlebot_burger_{0:>06d}.json'.format(self._index+self._offset)
         image_raw_filename = 'single_turtlebot_burger_{0:>06d}.png'.format(self._index+self._offset)
         image_marked_filename = 'single_turtlebot_burger_marked_image_{0:>06d}.png'.format(self._index+self._offset)

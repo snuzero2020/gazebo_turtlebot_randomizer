@@ -63,37 +63,36 @@ class image_converter:
       Y=[]
       Z=[]
       C=[]
-      if i%5==0:
-        cv2.imwrite('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/img/color/'+'camera_rgb_'+str(i/5).zfill(5)+'.jpg', color_array)
-        #cv2.imwrite('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/img/depth/'+str(i/5)+'camera_depth.pgm', depth_array*255)
-        #cv2.imwrite('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/img/label_img/'+str(i/5)+'label_img.pgm', l*255)
-        #np.savetxt('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/array/arr/'+str(i/5)+'depth_array.txt', depth_array, delimiter = ',')
-        #np.savetxt('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/array/label/'+str(i/5)+'label_array.txt', l, delimiter=',')
-        j=0
-        for point in pc2.read_points(PC2, field_names={'x','y','z','rgb'}, skip_nans=True):
-          rgb = pack('f', point[3])
-          rgb = unpack('i', rgb)[0]
-          r = (rgb>>16)&0x0000ff
-          g = (rgb>>8) & 0x0000ff
-          b = (rgb) & 0x0000ff
-          #print(point[0], point[1], point[2],(rgb>>16)&0x0000ff, (rgb>>8)&0x0000ff, (rgb)&0x0000ff) #r,g,b
-          if ((-0.5<point[2]) and (point[2] < 8)):
-            X.append(point[0])
-            Y.append(point[1])
-            Z.append(point[2])
-            C.append([r,g,b])
-            if (point[2] > threshold):
-              p[j] = 1
-              j += 1
-            else:
-              j += 1
+      cv2.imwrite('/home/joonkyu/catkin_ws/src/gazebo_turtlebot_randomizer/data/img/color/'+'camera_rgb_'+str(i).zfill(5)+'.jpg', color_array)
+      #cv2.imwrite('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/img/depth/'+str(i/5)+'camera_depth.pgm', depth_array*255)
+      #cv2.imwrite('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/img/label_img/'+str(i/5)+'label_img.pgm', l*255)
+      #np.savetxt('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/array/arr/'+str(i/5)+'depth_array.txt', depth_array, delimiter = ',')
+      #np.savetxt('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/array/label/'+str(i/5)+'label_array.txt', l, delimiter=',')
+      j=0
+      for point in pc2.read_points(PC2, field_names={'x','y','z','rgb'}, skip_nans=True):
+        rgb = pack('f', point[3])
+        rgb = unpack('i', rgb)[0]
+        r = (rgb>>16)&0x0000ff
+        g = (rgb>>8) & 0x0000ff
+        b = (rgb) & 0x0000ff
+        #print(point[0], point[1], point[2],(rgb>>16)&0x0000ff, (rgb>>8)&0x0000ff, (rgb)&0x0000ff) #r,g,b
+        if ((-0.5<point[2]) and (point[2] < 8)):
+          X.append(point[0])
+          Y.append(point[1])
+          Z.append(point[2])
+          C.append([r,g,b])
+          if (point[2] > threshold):
+            p[j] = 1
+            j += 1
+          else:
+            j += 1
 
 
-        point_label = np.reshape(p, (-1,960))
+      point_label = np.reshape(p, (-1,960))
 
-        pl = np.array(point_label)
-        #np.savetxt('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/array/point_label/'+str(i/5)+'point_label_array.txt', pl, delimiter = ',')
-        cv2.imwrite('/home/parallels/catkin_ws/src/gazebo_domain_randomization-master/tr_data/img/point_label_img/'+'point_label_img_'+str(i/5).zfill(5)+'.pgm', pl*255)
+      pl = np.array(point_label)
+      #np.savetxt('/home/joonkyu/catkin_ws/src/gazebo_turtlebot_randomizer/data/array/point_label/'+str(i)+'point_label_array.txt', pl, delimiter = ',')
+      cv2.imwrite('/home/joonkyu/catkin_ws/src/gazebo_turtlebot_randomizer/data/img/point_label_img/'+'point_label_img_'+str(i).zfill(5)+'.pgm', pl*255)
       print "test3"
       i += 1
     except CvBridgeError as e:
@@ -107,7 +106,7 @@ def main(args):
   rospy.init_node('image_converter', anonymous=True)
   while not rospy.is_shutdown():
     try:
-      rospy.sleep(50)
+      rospy.sleep(1.0)
     except KeyboardInterrupt:
       print("Shutting down")
     cv2.destroyAllWindows()
