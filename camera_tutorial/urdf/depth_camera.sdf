@@ -30,7 +30,7 @@
             <format>R8G8B8</format>
           </image>
           <clip>
-            <near>2</near>
+            <near>0.1</near>
             <far>20</far>
           </clip>
         </camera>
@@ -47,7 +47,7 @@
           <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
           <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
           <frameName>camera_link</frameName>
-          <pointCloudCutoff>2</pointCloudCutoff>
+          <pointCloudCutoff>0.1</pointCloudCutoff>
           <pointCloudCutoffMax>20.0</pointCloudCutoffMax>
           <distortionK1>0</distortionK1>
           <distortionK2>0</distortionK2>
