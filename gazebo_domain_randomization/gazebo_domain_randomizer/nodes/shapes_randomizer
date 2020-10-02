@@ -103,7 +103,7 @@ _material_list = ['Gazebo/White',
 
 class ShapesRandomizer:
     def __init__(self, position_range, orientation_range, size_range=[0.1, 0.5],
-                 max_num_model=50,
+                 max_num_model=20,
                  gazebo_ns='/gazebo'):
         self._sdf_temp = Template(_obj_sdf)
         self._spawn_model = rospy.ServiceProxy(gazebo_ns + '/spawn_sdf_model', SpawnModel)
